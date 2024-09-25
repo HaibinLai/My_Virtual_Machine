@@ -61,14 +61,14 @@ build CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir
   OBJECT_FILE_DIR = CMakeFiles\My_C_Virtual_Machine.dir
 
-build CMakeFiles/My_C_Virtual_Machine.dir/train.c.obj: C_COMPILER__My_C_Virtual_Machine_unscanned_Debug D$:/Project/My_C_Virtual_Machine/train.c || cmake_object_order_depends_target_My_C_Virtual_Machine
-  DEP_FILE = CMakeFiles\My_C_Virtual_Machine.dir\train.c.obj.d
+build CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj: C_COMPILER__My_C_Virtual_Machine_unscanned_Debug D$:/Project/My_C_Virtual_Machine/test.c || cmake_object_order_depends_target_My_C_Virtual_Machine
+  DEP_FILE = CMakeFiles\My_C_Virtual_Machine.dir\test.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir
   OBJECT_FILE_DIR = CMakeFiles\My_C_Virtual_Machine.dir
 
-build CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj: C_COMPILER__My_C_Virtual_Machine_unscanned_Debug D$:/Project/My_C_Virtual_Machine/test.c || cmake_object_order_depends_target_My_C_Virtual_Machine
-  DEP_FILE = CMakeFiles\My_C_Virtual_Machine.dir\test.c.obj.d
+build CMakeFiles/My_C_Virtual_Machine.dir/decode.cpp.obj: CXX_COMPILER__My_C_Virtual_Machine_unscanned_Debug D$:/Project/My_C_Virtual_Machine/decode.cpp || cmake_object_order_depends_target_My_C_Virtual_Machine
+  DEP_FILE = CMakeFiles\My_C_Virtual_Machine.dir\decode.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir
   OBJECT_FILE_DIR = CMakeFiles\My_C_Virtual_Machine.dir
@@ -81,7 +81,7 @@ build CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj: C_COMPILER__My_C_Virtual_M
 #############################################
 # Link the executable My_C_Virtual_Machine.exe
 
-build My_C_Virtual_Machine.exe: CXX_EXECUTABLE_LINKER__My_C_Virtual_Machine_Debug CMakeFiles/My_C_Virtual_Machine.dir/main.cpp.obj CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj CMakeFiles/My_C_Virtual_Machine.dir/train.c.obj CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj
+build My_C_Virtual_Machine.exe: CXX_EXECUTABLE_LINKER__My_C_Virtual_Machine_Debug CMakeFiles/My_C_Virtual_Machine.dir/main.cpp.obj CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj CMakeFiles/My_C_Virtual_Machine.dir/decode.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir

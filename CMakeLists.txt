@@ -8,4 +8,6 @@ add_executable(
         Virtual_Machine.cpp
         Virtual_Machine.h
         test.c
+        decode.cpp
+        CPU.h
 )
