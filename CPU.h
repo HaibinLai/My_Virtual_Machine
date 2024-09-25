@@ -6,7 +6,8 @@
 #define DECODE_H
 
 #include "decode.cpp"
-
+#include "immediate.cpp"
+#include "control.cpp"
 
 
 

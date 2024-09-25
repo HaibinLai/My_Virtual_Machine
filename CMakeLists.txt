@@ -10,4 +10,6 @@ add_executable(
         test.c
         decode.cpp
         CPU.h
+        immediate.cpp
+        control.cpp
 )
