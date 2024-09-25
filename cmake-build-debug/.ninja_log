@@ -1,12 +1,11 @@
 # ninja log v6
-4	105	7490002920731289	CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj	e777cbe7ebe5d765
-6	82	7489998656518161	CMakeFiles/My_C_Virtual_Machine.dir/main.cpp.obj	1f852e9a1a97043c
-105	272	7489998657508154	My_C_Virtual_Machine.exe	4dd3f5b948de044d
-26	94	7489998656718166	CMakeFiles/My_C_Virtual_Machine.dir/train.c.obj	35bb35983a65c0a2
-17	130	7490002920871285	CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj	c3f1f41ac29827d8
-2	259	7490003403810942	build.ninja	64b35acb5a9c6c5d
-4	107	7490003538699071	CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj	e777cbe7ebe5d765
-108	238	7490003539728771	My_C_Virtual_Machine.exe	1d9d8a7a7f5689b2
 5	91	7490004385522136	CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj	e777cbe7ebe5d765
-15	103	7490004385622690	CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj	c3f1f41ac29827d8
+6	82	7489998656518161	CMakeFiles/My_C_Virtual_Machine.dir/main.cpp.obj	1f852e9a1a97043c
+2	259	7490004906932973	build.ninja	64b35acb5a9c6c5d
 103	221	7490004386512080	My_C_Virtual_Machine.exe	1d9d8a7a7f5689b2
+26	94	7489998656718166	CMakeFiles/My_C_Virtual_Machine.dir/train.c.obj	35bb35983a65c0a2
+15	103	7490004385622690	CMakeFiles/My_C_Virtual_Machine.dir/test.c.obj	c3f1f41ac29827d8
+6	118	7490005035279074	CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj	e777cbe7ebe5d765
+119	243	7490005036399018	My_C_Virtual_Machine.exe	1d9d8a7a7f5689b2
+5	127	7490012501645142	CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj	e777cbe7ebe5d765
+128	270	7490012502877380	My_C_Virtual_Machine.exe	1d9d8a7a7f5689b2

@@ -1,7 +1,4 @@
 "C:\Program Files\JetBrains\CLion 2024.1.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2024.1.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S D:\Project\My_C_Virtual_Machine -B D:\Project\My_C_Virtual_Machine\cmake-build-debug
 -- Configuring done (0.2s)
-CMake Error at CMakeLists.txt:6 (add_executable):
-  No SOURCES given to target: test.c
-
-
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Generating done (0.0s)
+-- Build files have been written to: D:/Project/My_C_Virtual_Machine/cmake-build-debug

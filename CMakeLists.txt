@@ -8,4 +8,5 @@ add_executable(
         Virtual_Machine.cpp
         Virtual_Machine.h
         train.c
-        test.c)
+        test.c
+)
