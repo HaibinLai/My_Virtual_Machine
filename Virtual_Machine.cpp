@@ -402,21 +402,21 @@ enum Operation {
  };
 
 // 执行 ALU 操作
-uint32_t ALU(uint32_t operand1, uint32_t operand2, Operation op) {
+uint32_t ALU(uint32_t operand1, uint32_t operand2, ALUOp op) {
     switch (op) {
-        case ADD:
+        case ALU_ADD:
             return operand1 + operand2;
-        case SUB:
+        case ALU_SUB:
             return operand1 - operand2;
-        case AND:
+        case ALU_AND:
             return operand1 & operand2;
-        case OR:
+        case ALU_OR:
             return operand1 | operand2;
-        case XOR:
+        case ALU_XOR:
             return operand1 ^ operand2;
-        case SLT:
+        case ALU_SLT:
             return (operand1 < operand2) ? 1 : 0; // 小于返回 1
-        case SLTU:
+        case ALU_SLTU:
             return (static_cast<uint32_t>(operand1) < static_cast<uint32_t>(operand2)) ? 1 : 0; // 无符号小于
         default:
             std::cerr << "Unknown operation!" << std::endl;
@@ -447,7 +447,7 @@ uint32_t Ins_MMU(uint32_t pc) {
 
 
 int main() {
-    uint32_t program_length = 40;
+    uint32_t program_length = 18;
     uint32_t instructions[program_length] = {
           0x00400893, // // li a7, 4
           0x0fc10517, // // la a0, prompt1
@@ -505,11 +505,14 @@ int main() {
             rf, control.reg_write, inst.rs1, inst.rs2,
             inst.rd, OutData, 2);
 
-        ALUOp alu_op = generateALUOp(instruction);
-        ALUControlSignal alu_control_signal =  generateControlSignal(instruction,alu_op);
-
+        // ALU op
+        ALUOp alu_op_code = generateALUOp(instruction);
+        // ALU Signal
+        ALUControlSignal alu_control_signal =  generateControlSignal(instruction,alu_op_code);
         // MUX
         uint32_t alu_op2 = ALU_MUX(read_data2, imm_gen, control.alu_src);
+
+        uint32_t result = ALU(read_data1, alu_op2, alu_op_code);
 
         pc += 1;
     }
