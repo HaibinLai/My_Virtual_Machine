@@ -472,6 +472,14 @@ void MemoryInit() {
     }
 }
 
+uint32_t MemMUX(int mem_to_reg,uint32_t read_mem_data, uint32_t result) {
+    if(mem_to_reg) {
+        return read_mem_data;
+    }else {
+        return  result;
+    }
+}
+
 ////////////////////////
 
 
@@ -554,19 +562,15 @@ int main() {
         uint32_t alu_op2 = ALU_MUX(read_data2, imm_gen, control.alu_src);
 
         // ALU
-        uint32_t result = ALU(read_data1, alu_op2, alu_op_code);
-        uint32_t is_zero = Alu_Zero(result);
+        uint32_t alu_result = ALU(read_data1, alu_op2, alu_op_code);
+        uint32_t is_zero = Alu_Zero(alu_result);
 
         // PC control
         pc = pc + PC_Control(imm_gen, control.branch, is_zero);
 
-        uint32_t read_mem_data = Memory(result, control.mem_write, control.mem_read, read_data2);
-        if(control.mem_to_reg) {
-            OutData = read_mem_data;
-        }else {
-            OutData = result;
-        }
+        uint32_t read_mem_data = Memory(alu_result, control.mem_write, control.mem_read, read_data2);
 
+        OutData = MemMUX(control.mem_to_reg, read_mem_data, alu_result);
 
     }
 
