@@ -191,6 +191,7 @@ typedef struct {
     int mem_write;     // 控制信号：内存写入
     int branch;        // 控制信号：分支使能
     int alu_op;        // ALU 操作选择
+    int mem_to_reg;
 } ControlSignals;
 
 ControlSignals generate_control(Instruction const inst) {
@@ -432,7 +433,46 @@ uint32_t ALU_MUX(uint32_t operand2, uint32_t immgen, uint32_t alu_src) {
     }
 }
 
+uint32_t PC_Control(uint32_t immgen, int branch , uint32_t iszero) {
 
+    if(iszero && branch) {
+        return immgen;
+    }else {
+        return 1;
+    }
+}
+
+uint32_t Alu_Zero(uint32_t result) {
+    if(result == 0) {
+        return 1;
+    }else {
+        return 0;
+    }
+}
+
+#define MEMORY_SIZE 100
+uint32_t MEMORY[MEMORY_SIZE];
+
+/////////////////////// Mem Write //////////
+uint32_t Memory(uint32_t alu_result, int MemWrite, int MemRead, uint32_t write_data) {
+    if(MemWrite) {
+        MEMORY[alu_result] = write_data;
+        return 0;
+    }
+
+    if(MemRead) {
+        return MEMORY[alu_result];
+    }
+    return 0;
+}
+
+void MemoryInit() {
+    for(int i =0; i< MEMORY_SIZE; i++) {
+        MEMORY[i] = 0;
+    }
+}
+
+////////////////////////
 
 
 uint32_t pc = 0x00400000; /* program counter */
@@ -478,6 +518,7 @@ int main() {
     uint32_t running = CPU_status;
     RegisterFile rf;
     init_registers(&rf);
+    MemoryInit();
     pc = 0x00400000;
     uint32_t instruction_addr = Ins_MMU(pc);
 
@@ -512,9 +553,21 @@ int main() {
         // MUX
         uint32_t alu_op2 = ALU_MUX(read_data2, imm_gen, control.alu_src);
 
+        // ALU
         uint32_t result = ALU(read_data1, alu_op2, alu_op_code);
+        uint32_t is_zero = Alu_Zero(result);
 
-        pc += 1;
+        // PC control
+        pc = pc + PC_Control(imm_gen, control.branch, is_zero);
+
+        uint32_t read_mem_data = Memory(result, control.mem_write, control.mem_read, read_data2);
+        if(control.mem_to_reg) {
+            OutData = read_mem_data;
+        }else {
+            OutData = result;
+        }
+
+
     }
 
 
