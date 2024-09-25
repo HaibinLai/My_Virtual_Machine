@@ -1,4 +1,4 @@
-# Implementing Virtual Machine Using C Language
+# Implementing Virtual Machine Using C/C++ Language
 
 This is a virtual machine written in C, supporting the RISC-V instruction set.
 
