@@ -36,3 +36,23 @@ void print_registers(RegisterFile *rf) {
         printf("Register %02d: %08X\n", i, rf->registers[i]);
     }
 }
+
+uint32_t RegDealing(RegisterFile rf, int reg_write, unsigned int rs1,
+    unsigned int rs2, unsigned int rd, uint32_t OutData, uint32_t choose)
+{
+    // 读取 rs1 和 rs2 寄存器的值
+    uint32_t readData1 = read_register(&rf, rs1);
+    uint32_t readData2 = read_register(&rf, rs2);
+
+    // 如果 reg_write 为 1，写入 rd 寄存器
+    if (reg_write) {
+        write_register(&rf, rd, OutData);
+    }
+
+    // 返回 ALU 需要的读取数据（可以返回 rs1 或 rs2 的值，这里选择返回 rs1）
+    if(choose == 1) {
+        return readData1;
+    }else {
+        return readData1;
+    }
+}

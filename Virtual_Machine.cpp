@@ -66,7 +66,12 @@ int main() {
         // control
         ControlSignals control = generate_control(inst);
         uint32_t imm_gen = generate_immediate(instruction);
-        uint32_t read_data[2] = RegDealing();
+        uint32_t read_data1 = RegDealing(
+            rf, control.reg_write, inst.rs1, inst.rs2,
+            inst.rd, OutData, 1);
+        uint32_t read_data2 = RegDealing(
+    rf, control.reg_write, inst.rs1, inst.rs2,
+    inst.rd, OutData, 2);
 
 
     }
