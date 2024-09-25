@@ -174,7 +174,7 @@ uint32_t generate_immediate(unsigned int instruction) {
 
         default: // 未知指令
             imm = 0;
-        printf("Unknown opcode: %02X\n", opcode);
+        printf("Unknown opcode: %02X from imm unit\n", opcode);
         break;
     }
 
@@ -230,13 +230,14 @@ ControlSignals generate_control(Instruction const inst) {
         break;
 
         default: // 未知指令
-            printf("Unknown opcode: %02X\n", inst.opcode);
+            printf("Unknown opcode: %02X from control unit\n", inst.opcode);
         break;
     }
 
     return control;
 }
 
+/////////////////////////////// ALU control //////////////////
 enum ALUControlSignal {
     CTRL_ADD,
     CTRL_SUB,
@@ -288,6 +289,44 @@ ALUControlSignal generateControlSignal(uint32_t instruction, ALUOp aluOp) {
         default:
             return CTRL_NOP; // 默认无操作
     }
+}
+
+
+// 从指令生成 ALU 操作信号
+ALUOp generateALUOp(uint32_t instruction) {
+    // 假设 instruction 的结构如下：
+    // - opcode: instruction[6:0]
+    // - funct3: instruction[14:12]
+    // - funct7: instruction[31:25]
+
+    uint32_t opcode = instruction & 0x7F;
+    uint32_t funct3 = (instruction >> 12) & 0x07;
+    uint32_t funct7 = (instruction >> 25) & 0x7F;
+
+    switch (opcode) {
+        case 0x33: // R-type 指令（例如：ADD, SUB, AND, OR, XOR, SLT, SLTU）
+            if (funct3 == 0) {
+                return (funct7 == 0) ? ALU_ADD : ALU_SUB; // 0: ADD, 0x20: SUB
+            } else if (funct3 == 7) {
+                return ALU_AND;
+            } else if (funct3 == 6) {
+                return ALU_OR;
+            } else if (funct3 == 4) {
+                return ALU_XOR;
+            } else if (funct3 == 2) {
+                return ALU_SLT;
+            } else if (funct3 == 3) {
+                return ALU_SLTU;
+            }
+        break;
+
+        // 可以添加其他类型的指令处理，例如 I-type 和 S-type
+
+        default:
+            return ALU_NOP; // 默认无操作
+    }
+
+    return ALU_NOP; // 默认无操作
 }
 
 //
@@ -408,7 +447,8 @@ uint32_t Ins_MMU(uint32_t pc) {
 
 
 int main() {
-    uint32_t instructions[40] = {
+    uint32_t program_length = 40;
+    uint32_t instructions[program_length] = {
           0x00400893, // // li a7, 4
           0x0fc10517, // // la a0, prompt1
           0xffc50513,  //
@@ -439,9 +479,11 @@ int main() {
     RegisterFile rf;
     init_registers(&rf);
     pc = 0x00400000;
+    uint32_t instruction_addr = Ins_MMU(pc);
 
-    while(running) {
-        uint32_t instruction_addr = Ins_MMU(pc);
+    while(instruction_addr < program_length) {
+        // MMU -> pc
+        instruction_addr = Ins_MMU(pc);
 
         // fetch
         uint32_t instruction = instructions[instruction_addr];
@@ -451,7 +493,11 @@ int main() {
 
         // control
         ControlSignals control = generate_control(inst);
+
+        // imm_gen
         uint32_t imm_gen = generate_immediate(instruction);
+
+        // read
         uint32_t read_data1 = RegDealing(
             rf, control.reg_write, inst.rs1, inst.rs2,
             inst.rd, OutData, 1);
@@ -459,9 +505,13 @@ int main() {
             rf, control.reg_write, inst.rs1, inst.rs2,
             inst.rd, OutData, 2);
 
+        ALUOp alu_op = generateALUOp(instruction);
+        ALUControlSignal alu_control_signal =  generateControlSignal(instruction,alu_op);
+
+        // MUX
         uint32_t alu_op2 = ALU_MUX(read_data2, imm_gen, control.alu_src);
 
-
+        pc += 1;
     }
 
 
