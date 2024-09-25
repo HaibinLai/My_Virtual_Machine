@@ -14,6 +14,7 @@ A VM is a program that acts like a computer. It simulates a CPU along with a few
 
 - **Instruction Set**: Supports RISC-V
 - **Build Tool**: Compiled using Makefile
+![img.png](image/RISCV.png)
 
 ## Installation
 
