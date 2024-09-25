@@ -53,6 +53,6 @@ uint32_t RegDealing(RegisterFile rf, int reg_write, unsigned int rs1,
     if(choose == 1) {
         return readData1;
     }else {
-        return readData1;
+        return readData2;
     }
 }
