@@ -533,13 +533,11 @@ int main() {
     while(instruction_addr < program_length) {
         // MMU -> pc
         instruction_addr = Ins_MMU(pc);
-
         // fetch
         uint32_t instruction = instructions[instruction_addr];
 
         // decode
         Instruction inst = decode_instruction(instruction);
-
         // control
         ControlSignals control = generate_control(inst);
 
@@ -548,11 +546,9 @@ int main() {
 
         // read
         uint32_t read_data1 = RegDealing(
-            rf, control.reg_write, inst.rs1, inst.rs2,
-            inst.rd, OutData, 1);
+            rf, control.reg_write, inst.rs1, inst.rs2,inst.rd, OutData, 1);
         uint32_t read_data2 = RegDealing(
-            rf, control.reg_write, inst.rs1, inst.rs2,
-            inst.rd, OutData, 2);
+            rf, control.reg_write, inst.rs1, inst.rs2,inst.rd, OutData, 2);
 
         // ALU op
         ALUOp alu_op_code = generateALUOp(instruction);
@@ -567,11 +563,9 @@ int main() {
 
         // PC control
         pc = pc + PC_Control(imm_gen, control.branch, is_zero);
-
+        // read Data
         uint32_t read_mem_data = Memory(alu_result, control.mem_write, control.mem_read, read_data2);
-
         OutData = MemMUX(control.mem_to_reg, read_mem_data, alu_result);
-
     }
 
 
