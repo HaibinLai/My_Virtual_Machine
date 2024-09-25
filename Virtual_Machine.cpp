@@ -70,8 +70,8 @@ int main() {
             rf, control.reg_write, inst.rs1, inst.rs2,
             inst.rd, OutData, 1);
         uint32_t read_data2 = RegDealing(
-    rf, control.reg_write, inst.rs1, inst.rs2,
-    inst.rd, OutData, 2);
+            rf, control.reg_write, inst.rs1, inst.rs2,
+            inst.rd, OutData, 2);
 
 
     }
