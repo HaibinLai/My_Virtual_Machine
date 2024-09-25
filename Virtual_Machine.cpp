@@ -512,15 +512,7 @@ int main() {
           0x00000073,  // ecall
           0x00a00333,  // mv t1, a0
           0x006283b3,  // add t2, t0, t1
-          0x00400893,  // li a7, 4
-          0x0fc10517,  // la a0, result
-          0xfc050513,  //
-          0x00000073,  // ecall
-          0x00700533,  // mv a0, t2
-          0x00100893,  // li a7, 1
-          0x00000073,  // ecall
-          0x00a00893,  // li a7, 10
-          0x00000073   // ecall
+
     };
 
     uint32_t running = CPU_status;
