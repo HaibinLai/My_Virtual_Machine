@@ -55,6 +55,12 @@ build CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir
   OBJECT_FILE_DIR = CMakeFiles\My_C_Virtual_Machine.dir
 
+build CMakeFiles/My_C_Virtual_Machine.dir/testALU.cpp.obj: CXX_COMPILER__My_C_Virtual_Machine_unscanned_Debug D$:/Project/My_C_Virtual_Machine/testALU.cpp || cmake_object_order_depends_target_My_C_Virtual_Machine
+  DEP_FILE = CMakeFiles\My_C_Virtual_Machine.dir\testALU.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir
+  OBJECT_FILE_DIR = CMakeFiles\My_C_Virtual_Machine.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target My_C_Virtual_Machine
@@ -63,7 +69,7 @@ build CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the executable My_C_Virtual_Machine.exe
 
-build My_C_Virtual_Machine.exe: CXX_EXECUTABLE_LINKER__My_C_Virtual_Machine_Debug CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj
+build My_C_Virtual_Machine.exe: CXX_EXECUTABLE_LINKER__My_C_Virtual_Machine_Debug CMakeFiles/My_C_Virtual_Machine.dir/Virtual_Machine.cpp.obj CMakeFiles/My_C_Virtual_Machine.dir/testALU.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\My_C_Virtual_Machine.dir

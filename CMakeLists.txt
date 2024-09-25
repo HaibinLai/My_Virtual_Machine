@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(
         My_C_Virtual_Machine
         Virtual_Machine.cpp
+        testALU.cpp
 )

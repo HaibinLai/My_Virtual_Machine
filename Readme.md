@@ -34,12 +34,32 @@ After compilation, you can run the virtual machine with the following command:
 ```
 
 ```asm
-.ORIG x3000                        ; this is the address in memory where the program will be loaded
-LEA R0, HELLO_STR                  ; load the address of the HELLO_STR string into R0
-PUTs                               ; output the string pointed to by R0 to the console
-HALT                               ; halt the program
-HELLO_STR .STRINGZ "Hello World!"  ; store this string here in the program
-.END                               ; mark the end of the file
+Address     Code        Basic                        Line Source
+
+0x00400000  0x00400893  addi x17,x0,4                11       li a7, 4                # syscall for print_string
+0x00400004  0x0fc10517  auipc x10,0x0000fc10         12       la a0, prompt1         # load address of prompt1
+0x00400008  0xffc50513  addi x10,x10,0xfffffffc           
+0x0040000c  0x00000073  ecall                        13       ecall
+0x00400010  0x00500893  addi x17,x0,5                15       li a7, 5                # syscall for read_int
+0x00400014  0x00000073  ecall                        16       ecall
+0x00400018  0x00a002b3  add x5,x0,x10                17       mv t0, a0               # store first number in t0
+0x0040001c  0x00400893  addi x17,x0,4                20       li a7, 4                # syscall for print_string
+0x00400020  0x0fc10517  auipc x10,0x0000fc10         21       la a0, prompt2         # load address of prompt2
+0x00400024  0xfe050513  addi x10,x10,0xffffffe0           
+0x00400028  0x00000073  ecall                        22       ecall
+0x0040002c  0x00500893  addi x17,x0,5                24       li a7, 5                # syscall for read_int
+0x00400030  0x00000073  ecall                        25       ecall
+0x00400034  0x00a00333  add x6,x0,x10                26       mv t1, a0               # store second number in t1
+0x00400038  0x006283b3  add x7,x5,x6                 29       add t2, t0, t1          # t2 = t0 + t1
+0x0040003c  0x00400893  addi x17,x0,4                32       li a7, 4                # syscall for print_string
+0x00400040  0x0fc10517  auipc x10,0x0000fc10         33       la a0, result           # load address of result
+0x00400044  0xfc050513  addi x10,x10,0xffffffc0           
+0x00400048  0x00000073  ecall                        34       ecall
+0x0040004c  0x00700533  add x10,x0,x7                36       mv a0, t2               # move the sum to a0 for printing
+0x00400050  0x00100893  addi x17,x0,1                37       li a7, 1                # syscall for print_int
+0x00400054  0x00000073  ecall                        38       ecall
+0x00400058  0x00a00893  addi x17,x0,10               41       li a7, 10               # syscall for exit
+0x0040005c  0x00000073  ecall                        42       ecall
 ```
 
 ## Contributing

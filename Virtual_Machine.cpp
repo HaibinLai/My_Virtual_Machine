@@ -11,6 +11,8 @@
 
 //////////////////////////// MACRO //////////////
 
+#include <iostream>
+#include <ostream>
 /**
  * Register
  */
@@ -294,6 +296,55 @@ uint32_t RegDealing(RegisterFile rf, int reg_write, unsigned int rs1,
     }
 }
 
+////////////////////// ALU ///////////////
+///
+
+// 定义操作码
+enum Operation {
+    ADD,    // 加法
+    SUB,    // 减法
+    AND,    // 按位与
+    OR,     // 按位或
+    XOR,    // 按位异或
+    SLT,    // 小于
+    SLTU,   // 无符号小于
+     // 其他操作可以根据需要添加
+ };
+
+// 执行 ALU 操作
+uint32_t ALU(uint32_t operand1, uint32_t operand2, Operation op) {
+    switch (op) {
+        case ADD:
+            return operand1 + operand2;
+        case SUB:
+            return operand1 - operand2;
+        case AND:
+            return operand1 & operand2;
+        case OR:
+            return operand1 | operand2;
+        case XOR:
+            return operand1 ^ operand2;
+        case SLT:
+            return (operand1 < operand2) ? 1 : 0; // 小于返回 1
+        case SLTU:
+            return (static_cast<uint32_t>(operand1) < static_cast<uint32_t>(operand2)) ? 1 : 0; // 无符号小于
+        default:
+            std::cerr << "Unknown operation!" << std::endl;
+        return 0;
+    }
+}
+
+uint32_t ALU_MUX(uint32_t operand2, uint32_t immgen, uint32_t alu_src) {
+    if(alu_src) {
+        return immgen;
+    }else {
+        return operand2;
+    }
+}
+
+
+
+
 uint32_t pc = 0x00400000; /* program counter */
 uint32_t CPU_status = 1;
 
@@ -356,6 +407,8 @@ int main() {
         uint32_t read_data2 = RegDealing(
             rf, control.reg_write, inst.rs1, inst.rs2,
             inst.rd, OutData, 2);
+
+        uint32_t alu_op2 = ALU_MUX(read_data2, imm_gen, control.alu_src);
 
 
     }
