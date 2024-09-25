@@ -7,6 +7,5 @@ add_executable(
         My_C_Virtual_Machine main.cpp
         Virtual_Machine.cpp
         Virtual_Machine.h
-        train.c
         test.c
 )
