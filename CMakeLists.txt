@@ -4,13 +4,6 @@ project(My_C_Virtual_Machine)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(
-        My_C_Virtual_Machine main.cpp
+        My_C_Virtual_Machine
         Virtual_Machine.cpp
-        Virtual_Machine.h
-        test.c
-        decode.cpp
-        CPU.h
-        immediate.cpp
-        control.cpp
-        register.cpp
 )
