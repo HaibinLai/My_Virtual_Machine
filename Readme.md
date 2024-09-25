@@ -18,6 +18,32 @@ A VM is a program that acts like a computer. It simulates a CPU along with a few
 - **Build Tool**: Compiled using Makefile
 ![img.png](image/RISCV.png)
 
+## Code Overview
+
+_Instruction Decoding_
+
+The decode_instruction function extracts various fields from a given instruction.  
+
+_Immediate Generation_
+
+The generate_immediate function generates the immediate value based on the instruction type.  
+
+_Control Signals_
+
+The generate_control function generates control signals based on the opcode of the instruction.  
+
+_ALU Operations_
+
+The ALU function performs arithmetic and logical operations based on the ALU operation code.  
+
+_Memory Handling_
+
+The Memory function handles memory read and write operations.  
+
+
+
+
+
 ## Installation
 
 Make sure you have [Make](https://www.gnu.org/software/make/) and the necessary compilers installed.
@@ -72,6 +98,8 @@ Contributions of any kind are welcome! Please feel free to submit issues or pull
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+
 ```
 
 Feel free to modify any part of it to better fit your project!
