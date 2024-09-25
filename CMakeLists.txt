@@ -12,4 +12,5 @@ add_executable(
         CPU.h
         immediate.cpp
         control.cpp
+        register.cpp
 )
