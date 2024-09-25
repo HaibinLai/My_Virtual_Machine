@@ -2,6 +2,8 @@
 
 This is a virtual machine written in C, supporting the RISC-V instruction set.
 
+![img.png](image/Asm.png)
+
 ## How does a VM works?
 A VM creates one standard CPU architecture which is simulated on various hardware devices. One advantage of a compiler is that it has no runtime overhead while a VM does. Even though compilers do a pretty good job, writing a new one that targets multiple platforms is very difficult, so VMs are still helpful here. 
 In practice, VMs and compilers are mixed at various levels.
@@ -29,6 +31,15 @@ After compilation, you can run the virtual machine with the following command:
 
 ```bash
 ./your-vm-executable
+```
+
+```asm
+.ORIG x3000                        ; this is the address in memory where the program will be loaded
+LEA R0, HELLO_STR                  ; load the address of the HELLO_STR string into R0
+PUTs                               ; output the string pointed to by R0 to the console
+HALT                               ; halt the program
+HELLO_STR .STRINGZ "Hello World!"  ; store this string here in the program
+.END                               ; mark the end of the file
 ```
 
 ## Contributing
