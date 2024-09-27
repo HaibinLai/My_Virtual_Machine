@@ -521,6 +521,7 @@ int main() {
     MemoryInit();
     pc = 0x00400000;
     uint32_t instruction_addr = Ins_MMU(pc);
+    bool system_call = false;
 
     while(instruction_addr < program_length) {
         // MMU -> pc
